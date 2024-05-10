@@ -1,5 +1,11 @@
+import CTA from "../../components/CTA/CTA";
+
 const Home = () => {
-  return <div>Home</div>;
+  return (
+    <div>
+      <CTA></CTA>
+    </div>
+  );
 };
 
 export default Home;
