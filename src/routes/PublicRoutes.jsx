@@ -37,8 +37,12 @@ export const router = createBrowserRouter([
         element: <AddQuery></AddQuery>,
       },
       {
-        path: "/update-query",
+        path: "/update-query/:id",
         element: <UpdateQuery></UpdateQuery>,
+        loader: ({ params }) => {
+          console.log(params, "from rou");
+          return fetch(`http://localhost:5000/queries/${params.id}`);
+        },
       },
       {
         path: "/queries",

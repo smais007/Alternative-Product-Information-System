@@ -86,9 +86,12 @@ export default function MyQueries() {
                 >
                   Details
                 </Link>
-                <button className="rounded bg-indigo-50 px-2 py-1 text-sm font-semibold text-green-600 shadow-sm hover:bg-indigo-100">
+                <Link
+                  to={`/update-query/${query._id}`}
+                  className="rounded bg-indigo-50 px-2 py-1 text-sm font-semibold text-green-600 shadow-sm hover:bg-indigo-100"
+                >
                   Update
-                </button>
+                </Link>
                 <button onClick={() => handleDelete(query._id)}>Click</button>
               </div>
             </div>

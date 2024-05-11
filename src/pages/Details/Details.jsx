@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import RecomendedProd from "../../components/RecomendedProd/RecomendedProd";
 import { useEffect, useState } from "react";
 
+
 export default function Details() {
   const { id } = useParams();
   const [query, setQuery] = useState({});

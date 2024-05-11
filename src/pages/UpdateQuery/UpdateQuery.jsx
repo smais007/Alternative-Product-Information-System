@@ -1,13 +1,31 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../context/AuthProvider";
 
 import { toast } from "sonner";
+import { useLoaderData, useParams } from "react-router-dom";
 
 export default function UpdateQuery() {
-  const { user } = useContext(AuthContext);
-  // console.log(user);
 
-  const handleAddQuery = (e) => {
+  const { user } = useContext(AuthContext);
+  const { id } = useParams();
+  const queryData=useLoaderData()
+  const [query, setQuery] = useState({queryData});
+
+  useEffect(() => {
+    fetch(`http://localhost:5000/details/${id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setQuery(data);
+      })
+      .catch((error) => {
+        console.error("Error fetching place:", error);
+      });
+  }, [id]);
+
+  console.log(query);
+
+
+  const handleUpdateQuery = (e) => {
     e.preventDefault();
     const form = e.target;
     const product_name = form.product_name.value;
@@ -15,39 +33,31 @@ export default function UpdateQuery() {
     const product_image_url = form.product_image_url.value;
     const query_title = form.query_title.value;
     const alternation_reason = form.alternation_reason.value;
-    const email = user.email;
-    const recomend_count = 0;
-    const name = user.displayName;
-    const user_img = user.photoURL;
+
+
+
     const posted_date = new Date();
-    const addQuery = {
+    const updatedQuery = {
       product_name,
       brand_name,
       product_image_url,
       query_title,
       alternation_reason,
-      email,
-      recomend_count,
-      name,
-      user_img,
       posted_date,
     };
 
-    console.log(addQuery);
-
-    fetch("http://localhost:5000/queries", {
-      method: "POST",
+    fetch(`http://localhost:5000/updateQuery/${id}`, {
+      method: "PUT",
       headers: {
         "content-type": "application/json",
       },
-      body: JSON.stringify(addQuery),
+      body: JSON.stringify(updatedQuery),
     })
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        if (data.insertedId) {
-          toast.success("New Place has been added");
-          form.reset();
+        if (data.modifiedCount > 0) {
+          toast.success(" Query has been updated");
         }
       });
   };
@@ -65,7 +75,7 @@ export default function UpdateQuery() {
         </div>
 
         <form
-          onSubmit={handleAddQuery}
+          onSubmit={handleUpdateQuery}
           className="bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl md:col-span-2"
         >
           <div className="px-4 py-6 sm:p-8">
@@ -83,6 +93,7 @@ export default function UpdateQuery() {
                     name="product_name"
                     id="first-name"
                     autoComplete="given-name"
+                    defaultValue={query.product_name}
                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   />
                 </div>
@@ -101,6 +112,7 @@ export default function UpdateQuery() {
                     name="brand_name"
                     id="last-name"
                     autoComplete="family-name"
+                    defaultValue={query.brand_name}
                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   />
                 </div>
@@ -118,6 +130,7 @@ export default function UpdateQuery() {
                     name="product_image_url"
                     id="product_image_url"
                     autoComplete="url"
+                    defaultValue={query.product_image_url}
                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   />
                 </div>
@@ -136,6 +149,7 @@ export default function UpdateQuery() {
                     name="query_title"
                     id="query_title"
                     autoComplete="title"
+                    defaultValue={query.query_title}
                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   />
                 </div>
@@ -153,8 +167,9 @@ export default function UpdateQuery() {
                     id="about"
                     name="alternation_reason"
                     rows={3}
+
                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                    defaultValue={""}
+                    defaultValue={query.alternation_reason}
                   />
                 </div>
                 <p className="mt-3 text-sm leading-6 text-gray-600">
