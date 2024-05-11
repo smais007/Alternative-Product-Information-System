@@ -90,13 +90,13 @@ export default function Queries() {
                 </div>
               </div>
               <div>
-                <Link
+                {/* <Link
                   to={`/details/${query._id}`}
                   type="button"
                   className="rounded bg-indigo-50 px-2 py-1 text-sm font-semibold text-red-600 shadow-sm hover:bg-indigo-100"
                 >
                   ViewDetails
-                </Link>
+                </Link> */}
               </div>
             </div>
           ))}
