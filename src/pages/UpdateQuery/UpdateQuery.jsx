@@ -3,7 +3,7 @@ import { AuthContext } from "../../context/AuthProvider";
 
 import { toast } from "sonner";
 
-export default function AddQuery() {
+export default function UpdateQuery() {
   const { user } = useContext(AuthContext);
   // console.log(user);
 
@@ -57,7 +57,7 @@ export default function AddQuery() {
       <div className="grid grid-cols-1 gap-x-8 gap-y-8 pt-10 md:grid-cols-3">
         <div className="px-4 sm:px-0">
           <h2 className="text-base font-semibold leading-7 text-gray-900">
-            Product Information
+            Update Information
           </h2>
           <p className="mt-1 text-sm leading-6 text-gray-600">
             THis information will display in publically

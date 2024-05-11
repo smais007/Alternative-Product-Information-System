@@ -7,6 +7,8 @@ import MyQueries from "../pages/MyQueries/MyQueries";
 import AddQuery from "../pages/AddQuery/AddQuery";
 import Queries from "../pages/Queries/Queries";
 import Details from "../pages/Details/Details";
+import MyRecommendations from "../pages/MyRecommendations/MyRecommendations";
+import UpdateQuery from "../pages/UpdateQuery/UpdateQuery";
 
 export const router = createBrowserRouter([
   {
@@ -28,18 +30,29 @@ export const router = createBrowserRouter([
       {
         path: "/my-queries",
         element: <MyQueries></MyQueries>,
+        loader: () => fetch("http://localhost:5000/queries"),
       },
       {
         path: "/add-query",
         element: <AddQuery></AddQuery>,
       },
       {
-        path: "/queries",
-        element: <Queries></Queries>
+        path: "/update-query",
+        element: <UpdateQuery></UpdateQuery>,
       },
       {
-        path: "/query/details",
-        element: <Details></Details>
+        path: "/queries",
+        element: <Queries></Queries>,
+        loader: () => fetch("http://localhost:5000/queries"),
+      },
+      {
+        path: "/details/:id",
+        element: <Details></Details>,
+        // loader: ({ params }) => fetch(`http://localhost:5000/${params.id}`),
+      },
+      {
+        path: "/my-recommendations",
+        element: <MyRecommendations></MyRecommendations>,
       },
     ],
   },

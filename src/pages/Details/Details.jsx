@@ -1,27 +1,24 @@
+import { useParams } from "react-router-dom";
 import RecomendedProd from "../../components/RecomendedProd/RecomendedProd";
-
-const product = {
-  name: "Everyday Ruck Snack",
-  href: "#",
-  price: "$220",
-  description:
-    "Don't compromise on snack-carrying capacity with this lightweight and spacious bag. The drawstring top keeps all your favorite chips, crisps, fries, biscuits, crackers, and cookies secure.",
-  imageSrc:
-    "https://tailwindui.com/img/ecommerce-images/product-page-04-featured-product-shot.jpg",
-  imageAlt:
-    "Model wearing light green backpack with black canvas straps and front zipper pouch.",
-  breadcrumbs: [
-    { id: 1, name: "Travel", href: "#" },
-    { id: 2, name: "Bags", href: "#" },
-  ],
-  sizes: [
-    { name: "18L", description: "Perfect for a reasonable amount of snacks." },
-    { name: "20L", description: "Enough room for a serious amount of snacks." },
-  ],
-};
-const reviews = { average: 4, totalCount: 1624 };
+import { useEffect, useState } from "react";
 
 export default function Details() {
+  const { id } = useParams();
+  const [query, setQuery] = useState({});
+
+  useEffect(() => {
+    fetch(`http://localhost:5000/details/${id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setQuery(data);
+        console.log(typeof data);
+      })
+      .catch((error) => {
+        console.error("Error fetching place:", error);
+        // Handle error (e.g., display an error message)
+      });
+  }, [id]);
+
   return (
     <div className="bg-white">
       <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:grid lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
@@ -29,7 +26,7 @@ export default function Details() {
         <div className="lg:max-w-lg lg:self-end">
           <div className="mt-4">
             <h1 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-              {product.name}
+              {query.query_title}
             </h1>
           </div>
 
@@ -47,7 +44,7 @@ export default function Details() {
                     Posted_Date: 12-12-12
                   </p>
                   <p className="ml-2 text-sm text-indigo-600  font-medium">
-                    {reviews.totalCount} Recomended
+                    {query.recomend_count} Recomended
                   </p>
                 </div>
               </div>
@@ -56,20 +53,32 @@ export default function Details() {
             <div className="mt-4 space-y-6">
               <p className="text-base text-gray-500">
                 <span className="font-bold ">Query Title: {""}</span>
-                {product.description}
+                {query.query_title}
               </p>
             </div>
 
             <div className="mt-6 flex items-center">
               <p className="ml-2 text-sm text-gray-500">
                 <span className="font-bold ">Brand Name :</span>
+                {query.brand_name}
               </p>
             </div>
             <div className="mt-4 space-y-6">
               <p className="text-base text-gray-500">
                 <span className="font-bold ">Alternation Reason: {""}</span>
-                {product.description}
+                {query.alternation_reason}
               </p>
+            </div>
+            <div className="flex gap-4 item-center">
+              <img
+                className="inline-block h-10 w-10 rounded-full"
+                src={query?.user_img}
+                alt=""
+              />
+              <div>
+                <p>{query.name}</p>
+                <p>{query.posted_date}</p>
+              </div>
             </div>
           </section>
         </div>
@@ -78,8 +87,7 @@ export default function Details() {
         <div className="mt-10 lg:col-start-2 lg:row-span-2 lg:mt-0 lg:self-center">
           <div className="aspect-h-1 aspect-w-1 overflow-hidden rounded-lg">
             <img
-              src={product.imageSrc}
-              alt={product.imageAlt}
+              src={query.product_image_url}
               className="h-full w-full object-cover object-center"
             />
           </div>
