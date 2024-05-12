@@ -9,6 +9,8 @@ import Queries from "../pages/Queries/Queries";
 import Details from "../pages/Details/Details";
 import MyRecommendations from "../pages/MyRecommendations/MyRecommendations";
 import UpdateQuery from "../pages/UpdateQuery/UpdateQuery";
+import Recommendation from "../pages/Recommendation/Recommendation";
+import PrivateRoute from "./PrivateRoute";
 
 export const router = createBrowserRouter([
   {
@@ -29,16 +31,29 @@ export const router = createBrowserRouter([
       },
       {
         path: "/my-queries",
-        element: <MyQueries></MyQueries>,
+        element: (
+          <PrivateRoute>
+           
+            <MyQueries></MyQueries>
+          </PrivateRoute>
+        ),
         loader: () => fetch("http://localhost:5000/queries"),
       },
       {
         path: "/add-query",
-        element: <AddQuery></AddQuery>,
+        element: (
+          <PrivateRoute>
+            <AddQuery></AddQuery>,
+          </PrivateRoute>
+        ),
       },
       {
         path: "/update-query/:id",
-        element: <UpdateQuery></UpdateQuery>,
+        element: (
+          <PrivateRoute>
+            <UpdateQuery></UpdateQuery>
+          </PrivateRoute>
+        ),
         loader: ({ params }) => {
           console.log(params, "from rou");
           return fetch(`http://localhost:5000/queries/${params.id}`);
@@ -57,6 +72,10 @@ export const router = createBrowserRouter([
       {
         path: "/my-recommendations",
         element: <MyRecommendations></MyRecommendations>,
+      },
+      {
+        path: "/recommendation/:id",
+        element: <Recommendation></Recommendation>,
       },
     ],
   },

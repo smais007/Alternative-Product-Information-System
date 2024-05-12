@@ -1,11 +1,15 @@
 import { Link, useLoaderData } from "react-router-dom";
 import QueryBanner from "../../components/QueryBanner/QueryBanner";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Swal from "sweetalert2";
+import { AuthContext } from "../../context/AuthProvider";
 
 export default function MyQueries() {
   const initialQueries = useLoaderData();
   const [queries, setQueries] = useState(initialQueries);
+  const { user } = useContext(AuthContext);
+
+  console.log(queries, user);
 
   const handleDelete = (_id) => {
     Swal.fire({
@@ -44,7 +48,7 @@ export default function MyQueries() {
         <h2 className="sr-only">Products</h2>
 
         <div className="grid grid-cols-1 gap-y-4 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-10 lg:grid-cols-3 lg:gap-x-8">
-          {queries.map((query) => (
+          {queries?.map((query) =>query.email===user.email  && (
             <div
               key={query._id}
               className="group relative flex flex-col overflow-hidden rounded-lg border border-gray-200 bg-white"
