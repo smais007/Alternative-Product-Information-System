@@ -53,10 +53,10 @@ export default function Details() {
               <div className="ml-4 border-l border-gray-300 pl-4">
                 <h2 className="sr-only">Reviews</h2>
                 <div className="flex items-center">
-                  <div></div>
-                  <p className="ml-2 text-sm text-gray-500">
-                    Posted_Date: 12-12-12
-                  </p>
+                  {/* <div></div> */}
+                  {/* <p className="ml-2 text-sm text-gray-500">
+                    Posted_Date: {query.posted_date}
+                  </p> */}
                   <p className="ml-2 text-sm text-indigo-600  font-medium">
                     {query.recomend_count} Recomended
                   </p>
@@ -83,7 +83,7 @@ export default function Details() {
                 {query.alternation_reason}
               </p>
             </div>
-            <div className="flex gap-4 item-center">
+            <div className="flex gap-4 items-center pt-6">
               <img
                 className="inline-block h-10 w-10 rounded-full"
                 src={query?.user_img}
@@ -91,7 +91,11 @@ export default function Details() {
               />
               <div>
                 <p>{query.name}</p>
-                <p>{query.posted_date}</p>
+                <p className="text-sm text-gray-500">
+                  {" "}
+                  <span>Posted: </span>{" "}
+                  {new Date(query.posted_date).toLocaleDateString()}
+                </p>
               </div>
             </div>
           </section>
@@ -115,7 +119,7 @@ export default function Details() {
             </h2>
 
             <form>
-              <div className="mt-10">
+              <div className="mt-1">
                 <Link
                   onClick={handleAddRecommendation}
                   to={`/recommendation/${id}`}

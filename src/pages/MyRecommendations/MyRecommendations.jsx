@@ -4,16 +4,17 @@ import { useLoaderData } from "react-router-dom";
 
 export default function MyRecommendations() {
   const recommendedData = useLoaderData();
-  const { user } = useContext(AuthContext);
+  const { user } = useContext(AuthContext); // Assuming you have a dark mode state in your AuthContext
   const email = user?.email;
+
   return (
-    <div className="container mx-auto    px-4 sm:px-6 lg:px-8">
+    <div className="container mx-auto px-4 sm:px-6 lg:px-8 bg-white dark:bg-gray-900">
       <div className="sm:flex sm:items-center">
         <div className="sm:flex-auto">
-          <h1 className="text-base font-semibold leading-6 text-gray-900">
+          <h1 className="text-base font-semibold leading-6 text-gray-900 dark:text-white">
             Users
           </h1>
-          <p className="mt-2 text-sm text-gray-700">
+          <p className="mt-2 text-sm text-gray-700 dark:text-gray-300">
             A list of all the users in your account including their name, title,
             email and role.
           </p>
@@ -28,45 +29,47 @@ export default function MyRecommendations() {
         </div>
       </div>
       <div className="-mx-4 mt-8 sm:-mx-0">
-        <table className="min-w-full divide-y divide-gray-300">
+        <table
+          className={`min-w-full divide-y divide-gray-300 dark:divide-gray-700`}
+        >
           <thead>
             <tr>
               <th
                 scope="col"
-                className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0"
+                className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 dark:text-white sm:pl-0"
               >
-               Query Title
+                Query Title
               </th>
               <th
                 scope="col"
-                className="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 lg:table-cell"
+                className="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900  dark:text-white lg:table-cell"
               >
-               Recommended Query Title
+                Recommended Query Title
               </th>
               <th
                 scope="col"
-                className="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 sm:table-cell"
+                className="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900  dark:text-white sm:table-cell"
               >
                 Product Name
               </th>
               <th
                 scope="col"
-                className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900  dark:text-white"
               >
-               Recommended Product
+                Recommended Product
               </th>
               <th scope="col" className="relative py-3.5 pl-3 pr-4 sm:pr-0">
                 <span className="sr-only">Edit</span>
               </th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-gray-200 bg-white">
+          <tbody className="divide-y divide-gray-200 dark:divide-gray-800 bg-white  dark:text-gray-900">
             {Array.isArray(recommendedData) &&
               recommendedData.map(
                 (data) =>
                   email === data.recommender.email && (
                     <tr key={data._id}>
-                      <td className="w-full max-w-0 py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:w-auto sm:max-w-none sm:pl-0">
+                      <td className="w-full max-w-0 py-4 pl-4 pr-3 text-sm font-medium text-gray-900 dark:text-white sm:w-auto sm:max-w-none sm:pl-0">
                         {data.query_title}
                         <dl className="font-normal lg:hidden">
                           <dt className="sr-only">Your Product</dt>

@@ -56,7 +56,7 @@ export default function AddQuery() {
     <div className="space-y-10 divide-y divide-gray-900/10 container mx-auto px-4 sm:px-6 lg:px-8">
       <div className="grid grid-cols-1 gap-x-8 gap-y-8 pt-10 md:grid-cols-3">
         <div className="px-4 sm:px-0">
-          <h2 className="text-base font-semibold leading-7 text-gray-900">
+          <h2 className="text-base font-semibold leading-7 text-gray-900 dark:text-white">
             Product Information
           </h2>
           <p className="mt-1 text-sm leading-6 text-gray-600">
@@ -66,14 +66,14 @@ export default function AddQuery() {
 
         <form
           onSubmit={handleAddQuery}
-          className="bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl md:col-span-2"
+          className="bg-white dark:bg-gray-900 shadow-sm ring-1 ring-gray-900/5  dark:ring-gray-800 sm:rounded-xl md:col-span-2"
         >
           <div className="px-4 py-6 sm:p-8">
             <div className="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
               <div className="sm:col-span-3">
                 <label
                   htmlFor="first-name"
-                  className="block text-sm font-medium leading-6 text-gray-900"
+                  className="block text-sm font-medium leading-6 text-gray-900 dark:text-white"
                 >
                   Product Name
                 </label>
@@ -83,7 +83,7 @@ export default function AddQuery() {
                     name="product_name"
                     id="first-name"
                     autoComplete="given-name"
-                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 dark:bg-gray-900 dark:ring-gray-700 dark:text-white "
                   />
                 </div>
               </div>
@@ -91,7 +91,7 @@ export default function AddQuery() {
               <div className="sm:col-span-3">
                 <label
                   htmlFor="last-name"
-                  className="block text-sm font-medium leading-6 text-gray-900"
+                  className="block text-sm font-medium leading-6 text-gray-900  dark:text-white"
                 >
                   Product Brand
                 </label>
@@ -101,14 +101,14 @@ export default function AddQuery() {
                     name="brand_name"
                     id="last-name"
                     autoComplete="family-name"
-                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 dark:bg-gray-900 dark:ring-gray-700 dark:text-white "
                   />
                 </div>
               </div>
               <div className="col-span-full">
                 <label
                   htmlFor="url"
-                  className="block text-sm font-medium leading-6 text-gray-900"
+                  className="block text-sm font-medium leading-6 text-gray-900  dark:text-white"
                 >
                   Product Image URL
                 </label>
@@ -118,7 +118,7 @@ export default function AddQuery() {
                     name="product_image_url"
                     id="product_image_url"
                     autoComplete="url"
-                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 dark:bg-gray-900 dark:ring-gray-700 dark:text-white "
                   />
                 </div>
               </div>
@@ -126,7 +126,7 @@ export default function AddQuery() {
               <div className="col-span-full">
                 <label
                   htmlFor="street-address"
-                  className="block text-sm font-medium leading-6 text-gray-900"
+                  className="block text-sm font-medium leading-6 text-gray-900  dark:text-white"
                 >
                   Query Title
                 </label>
@@ -136,7 +136,7 @@ export default function AddQuery() {
                     name="query_title"
                     id="query_title"
                     autoComplete="title"
-                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    className="dark:bg-gray-900 dark:ring-gray-700 dark:text-white  block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   />
                 </div>
               </div>
@@ -144,7 +144,7 @@ export default function AddQuery() {
               <div className="col-span-full">
                 <label
                   htmlFor="about"
-                  className="block text-sm font-medium leading-6 text-gray-900"
+                  className="block text-sm font-medium leading-6 text-gray-900  dark:text-white"
                 >
                   Alternation Reason
                 </label>
@@ -153,7 +153,7 @@ export default function AddQuery() {
                     id="about"
                     name="alternation_reason"
                     rows={3}
-                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    className="dark:bg-gray-900 dark:ring-gray-700 dark:text-white block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     defaultValue={""}
                   />
                 </div>
@@ -163,7 +163,7 @@ export default function AddQuery() {
               </div>
             </div>
           </div>
-          <div className="flex items-center justify-end gap-x-6 border-t border-gray-900/10 px-4 py-4 sm:px-8">
+          <div className="flex items-center justify-end gap-x-6 border-t border-gray-900/10 dark:border-gray-800 px-4 py-4 sm:px-8">
             <button
               type="button"
               className="text-sm font-semibold leading-6 text-gray-900"

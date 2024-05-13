@@ -21,6 +21,7 @@ export const router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
+        loader: () => fetch("http://localhost:5000/queries"),
       },
       {
         path: "/log-in",
@@ -66,22 +67,38 @@ export const router = createBrowserRouter([
       },
       {
         path: "/details/:id",
-        element: <Details></Details>,
+        element: (
+          <PrivateRoute>
+            <Details></Details>
+          </PrivateRoute>
+        ),
         // loader: ({ params }) => fetch(`http://localhost:5000/${params.id}`),
       },
       {
         path: "/my-recommendations",
-        element: <MyRecommendations></MyRecommendations>,
+        element: (
+          <PrivateRoute>
+            <MyRecommendations></MyRecommendations>
+          </PrivateRoute>
+        ),
         loader: () => fetch("http://localhost:5000/recommendation"),
       },
       {
         path: "/recommendation/:id",
-        element: <Recommendation></Recommendation>,
+        element: (
+          <PrivateRoute>
+            {" "}
+            <Recommendation></Recommendation>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/recommendations-for-me",
-        element: <RecommendationForMe></RecommendationForMe>,
-        loader: () => fetch("http://localhost:5000/recommendation"),
+        element: (
+          <PrivateRoute>
+            <RecommendationForMe></RecommendationForMe>
+          </PrivateRoute>
+        ),
       },
     ],
   },

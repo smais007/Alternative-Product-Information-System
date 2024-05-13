@@ -44,7 +44,7 @@ export default function Navbar() {
   };
 
   return (
-    <header className="bg-white dark:bg-gray-900">
+    <header className="bg-white dark:bg-gray-900 shadow-sm sticky top-0 z-50 backdrop-filter backdrop-blur-lg bg-opacity-50 dark:bg-opacity-50 transition duration-500">
       {/* Blur effect */}
 
       <nav
@@ -176,7 +176,7 @@ export default function Navbar() {
         onClose={setMobileMenuOpen}
       >
         <div className="fixed inset-0 z-10" />
-        <Dialog.Panel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white dark:bg-gray-900 dark:text-white  px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
+        <Dialog.Panel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white dark:bg-gray-900  dark:text-white  px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
           <div className="flex items-center gap-x-6">
             <a href="#" className="-m-1.5 p-1.5">
               <span className="sr-only">Your Company</span>
@@ -220,7 +220,7 @@ export default function Navbar() {
                   <a
                     key={item.name}
                     href={item.href}
-                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 dark:text-white hover:bg-gray-50"
+                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-800"
                   >
                     {item.name}
                   </a>
@@ -230,13 +230,13 @@ export default function Navbar() {
                 <div className="py-6">
                   <a
                     href="/login"
-                    className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 dark:text-white hover:bg-gray-50"
+                    className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-800"
                   >
                     Log in
                   </a>
                   <a
                     href="/sign-up"
-                    className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900  dark:text-white  hover:bg-gray-50"
+                    className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900  dark:text-white  hover:bg-gray-50 dark:hover:bg-gray-800"
                   >
                     Sign up
                   </a>
