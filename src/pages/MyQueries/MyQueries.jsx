@@ -9,7 +9,6 @@ export default function MyQueries() {
   const [queries, setQueries] = useState(initialQueries);
   const { user } = useContext(AuthContext);
 
-  console.log(queries, user);
 
   const handleDelete = (_id) => {
     Swal.fire({

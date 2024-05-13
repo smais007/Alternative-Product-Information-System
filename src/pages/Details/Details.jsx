@@ -116,7 +116,7 @@ export default function Details() {
         </div>
       </div>
       <div>
-        <RecomendedProd></RecomendedProd>
+        <RecomendedProd id={id}></RecomendedProd>
       </div>
     </div>
   );

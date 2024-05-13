@@ -16,7 +16,6 @@ export default function Recommendation() {
       .then((res) => res.json())
       .then((data) => {
         setQuery(data);
-        console.log(typeof data);
       })
       .catch((error) => {
         console.error("Error fetching product:", error);
@@ -25,6 +24,9 @@ export default function Recommendation() {
   }, [id]);
 
   console.log(query);
+
+  const query_title = query.query_title;
+  const product_name = query.product_name;
 
   const handleRecommendation = (e) => {
     e.preventDefault();
@@ -37,7 +39,9 @@ export default function Recommendation() {
 
     const recommendationQuery = {
       id,
+      product_name,
       re_product_name,
+      query_title,
       re_brand_name,
       re_product_image_url,
       re_query_title,
