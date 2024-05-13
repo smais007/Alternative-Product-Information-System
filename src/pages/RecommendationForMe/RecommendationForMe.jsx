@@ -1,10 +1,9 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { AuthContext } from "../../context/AuthProvider";
 import { useLoaderData } from "react-router-dom";
 
 export default function RecommendationForMe() {
   const recommendedData = useLoaderData();
-  const [data, setData] = useState(null);
 
   // useEffect(() => {
   //   const fetchData = async () => {
@@ -87,16 +86,18 @@ export default function RecommendationForMe() {
                         <dl className="font-normal lg:hidden">
                           <dt className="sr-only">Your Product</dt>
                           <dd className="mt-1 truncate text-gray-700">
-                          Your Product:  {data.product_name}
+                            Your Product: {data.product_name}
                           </dd>
 
                           {/* <dt className="sr-only sm:hidden">Your Product</dt>
                           <dd className="mt-1 truncate text-gray-500 sm:hidden">
                           Your Product:  {data.product_name}
                           </dd> */}
-                          <dt className="sr-only sm:hidden">Recomended Product</dt>
+                          <dt className="sr-only sm:hidden">
+                            Recomended Product
+                          </dt>
                           <dd className="mt-1 truncate text-gray-500 sm:hidden">
-                          Recomended Product {data.re_product_name}
+                            Recomended Product {data.re_product_name}
                           </dd>
                         </dl>
                       </td>

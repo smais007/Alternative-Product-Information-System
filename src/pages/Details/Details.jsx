@@ -2,7 +2,6 @@ import { Link, useParams } from "react-router-dom";
 import RecomendedProd from "../../components/RecomendedProd/RecomendedProd";
 import { useEffect, useState } from "react";
 
-
 export default function Details() {
   const { id } = useParams();
   const [query, setQuery] = useState({});
@@ -12,13 +11,27 @@ export default function Details() {
       .then((res) => res.json())
       .then((data) => {
         setQuery(data);
-        console.log(typeof data);
       })
       .catch((error) => {
         console.error("Error fetching place:", error);
         // Handle error (e.g., display an error message)
       });
   }, [id]);
+
+  const handleAddRecommendation = () => {
+    fetch(`http://localhost:5000/recommendation/${id}`, {
+      method: "PUT",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("Recommendation count increased:", data);
+        // Optionally, you can update the state to reflect the change immediately
+      })
+      .catch((error) => {
+        console.error("Error adding recommendation:", error);
+        // Handle error (e.g., display an error message)
+      });
+  };
 
   return (
     <div className="bg-white">
@@ -104,7 +117,8 @@ export default function Details() {
             <form>
               <div className="mt-10">
                 <Link
-                to={`/recommendation/${id}`}
+                  onClick={handleAddRecommendation}
+                  to={`/recommendation/${id}`}
                   type="submit"
                   className="flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50"
                 >
