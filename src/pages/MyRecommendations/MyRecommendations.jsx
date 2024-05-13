@@ -1,14 +1,12 @@
-const people = [
-  {
-    name: "Lindsay Walton",
-    title: "Front-end Developer",
-    email: "lindsay.walton@example.com",
-    role: "Member",
-  },
-  // More people...
-];
+import { useContext } from "react";
+import { AuthContext } from "../../context/AuthProvider";
+import { useLoaderData } from "react-router-dom";
 
 export default function MyRecommendations() {
+  const recommendedData = useLoaderData();
+  const { user } = useContext(AuthContext);
+  const email = user?.email;
+  console.log(email);
   return (
     <div className="container mx-auto    px-4 sm:px-6 lg:px-8">
       <div className="sm:flex sm:items-center">
@@ -64,37 +62,44 @@ export default function MyRecommendations() {
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-200 bg-white">
-            {people.map((person) => (
-              <tr key={person.email}>
-                <td className="w-full max-w-0 py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:w-auto sm:max-w-none sm:pl-0">
-                  {person.name}
-                  <dl className="font-normal lg:hidden">
-                    <dt className="sr-only">Title</dt>
-                    <dd className="mt-1 truncate text-gray-700">
-                      {person.title}
-                    </dd>
-                    <dt className="sr-only sm:hidden">Email</dt>
-                    <dd className="mt-1 truncate text-gray-500 sm:hidden">
-                      {person.email}
-                    </dd>
-                  </dl>
-                </td>
-                <td className="hidden px-3 py-4 text-sm text-gray-500 lg:table-cell">
-                  {person.title}
-                </td>
-                <td className="hidden px-3 py-4 text-sm text-gray-500 sm:table-cell">
-                  {person.email}
-                </td>
-                <td className="px-3 py-4 text-sm text-gray-500">
-                  {person.role}
-                </td>
-                <td className="py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
-                  <a href="#" className="text-indigo-600 hover:text-indigo-900">
-                    Delete<span className="sr-only">, {person.name}</span>
-                  </a>
-                </td>
-              </tr>
-            ))}
+            {Array.isArray(recommendedData) &&
+              recommendedData.map(
+                (data) =>
+                  email === data.recommender.email && (
+                    <tr key={data._id}>
+                      <td className="w-full max-w-0 py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:w-auto sm:max-w-none sm:pl-0">
+                        {data.re_query_title}
+                        <dl className="font-normal lg:hidden">
+                          <dt className="sr-only">Title</dt>
+                          <dd className="mt-1 truncate text-gray-700">
+                            {data.query_title}
+                          </dd>
+                          <dt className="sr-only sm:hidden">Email</dt>
+                          <dd className="mt-1 truncate text-gray-500 sm:hidden">
+                            {data.recommender.email}
+                          </dd>
+                        </dl>
+                      </td>
+                      <td className="hidden px-3 py-4 text-sm text-gray-500 lg:table-cell">
+                        {data.re_query_title}
+                      </td>
+                      <td className="hidden px-3 py-4 text-sm text-gray-500 sm:table-cell">
+                        {data.recommender.email}
+                      </td>
+                      <td className="px-3 py-4 text-sm text-gray-500">
+                        {data.role}
+                      </td>
+                      <td className="py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
+                        <a
+                          href="#"
+                          className="text-indigo-600 hover:text-indigo-900"
+                        >
+                          Delete<span className="sr-only">, {data.name}</span>
+                        </a>
+                      </td>
+                    </tr>
+                  )
+              )}
           </tbody>
         </table>
       </div>

@@ -2,22 +2,24 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../context/AuthProvider";
 
 import { toast } from "sonner";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 export default function Recommendation() {
   const { user } = useContext(AuthContext);
   const { id } = useParams();
   const [query, setQuery] = useState({});
 
+  console.log(user);
+
   useEffect(() => {
-    fetch(`http://localhost:5000/recommendation/${id}`)
+    fetch(`http://localhost:5000/details/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setQuery(data);
         console.log(typeof data);
       })
       .catch((error) => {
-        console.error("Error fetching place:", error);
+        console.error("Error fetching product:", error);
         // Handle error (e.g., display an error message)
       });
   }, [id]);
@@ -33,34 +35,37 @@ export default function Recommendation() {
     const re_query_title = form.re_query_title.value;
     const re_recommendation_reason = form.re_recommendation_reason.value;
 
-
-
     const recommendationQuery = {
+      id,
       re_product_name,
       re_brand_name,
       re_product_image_url,
       re_query_title,
       re_recommendation_reason,
-
+      recommender: {
+        email: user?.email,
+        name: user?.displayName,
+        photo: user?.photoURL,
+      },
     };
 
     console.log(recommendationQuery);
 
-    // fetch("http://localhost:5000/queries", {
-    //   method: "POST",
-    //   headers: {
-    //     "content-type": "application/json",
-    //   },
-    //   body: JSON.stringify(addQuery),
-    // })
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     console.log(data);
-    //     if (data.insertedId) {
-    //       toast.success("New Place has been added");
-    //       form.reset();
-    //     }
-    //   });
+    fetch("http://localhost:5000/recommendation", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(recommendationQuery),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.insertedId) {
+          toast.success("Your recommendation added");
+          form.reset();
+        }
+      });
   };
 
   return (

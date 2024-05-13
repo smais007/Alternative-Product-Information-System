@@ -11,6 +11,7 @@ import MyRecommendations from "../pages/MyRecommendations/MyRecommendations";
 import UpdateQuery from "../pages/UpdateQuery/UpdateQuery";
 import Recommendation from "../pages/Recommendation/Recommendation";
 import PrivateRoute from "./PrivateRoute";
+import RecommendationForMe from "../pages/RecommendationForMe/RecommendationForMe";
 
 export const router = createBrowserRouter([
   {
@@ -33,7 +34,6 @@ export const router = createBrowserRouter([
         path: "/my-queries",
         element: (
           <PrivateRoute>
-           
             <MyQueries></MyQueries>
           </PrivateRoute>
         ),
@@ -72,10 +72,15 @@ export const router = createBrowserRouter([
       {
         path: "/my-recommendations",
         element: <MyRecommendations></MyRecommendations>,
+        loader: () => fetch("http://localhost:5000/recommendation"),
       },
       {
         path: "/recommendation/:id",
         element: <Recommendation></Recommendation>,
+      },
+      {
+        path: "/recommendations-for-me",
+        element: <RecommendationForMe></RecommendationForMe>,
       },
     ],
   },
