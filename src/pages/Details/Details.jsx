@@ -7,7 +7,7 @@ export default function Details() {
   const [query, setQuery] = useState({});
 
   useEffect(() => {
-    fetch(`http://localhost:5000/details/${id}`)
+    fetch(`https://apis-server-eight.vercel.app/details/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setQuery(data);
@@ -19,7 +19,7 @@ export default function Details() {
   }, [id]);
 
   const handleAddRecommendation = () => {
-    fetch(`http://localhost:5000/recommendation/${id}`, {
+    fetch(`https://apis-server-eight.vercel.app/recommendation/${id}`, {
       method: "PUT",
     })
       .then((res) => res.json())
@@ -34,12 +34,12 @@ export default function Details() {
   };
 
   return (
-    <div className="bg-white">
+    <div className="bg-white dark:bg-gray-900">
       <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:grid lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
         {/* Product details */}
         <div className="lg:max-w-lg lg:self-end">
           <div className="mt-4">
-            <h1 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+            <h1 className="text-3xl font-bold tracking-tight text-gray-900  dark:text-gray-100 sm:text-4xl">
               {query.query_title}
             </h1>
           </div>
@@ -90,7 +90,7 @@ export default function Details() {
                 alt=""
               />
               <div>
-                <p>{query.name}</p>
+                <p className="text-gray-500 font-bold">{query.name}</p>
                 <p className="text-sm text-gray-500">
                   {" "}
                   <span>Posted: </span>{" "}

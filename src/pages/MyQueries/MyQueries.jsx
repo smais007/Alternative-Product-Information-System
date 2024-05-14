@@ -20,7 +20,7 @@ export default function MyQueries() {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/queries/${_id}`, {
+        fetch(`https://apis-server-eight.vercel.app/queries/${_id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
@@ -62,7 +62,7 @@ export default function MyQueries() {
                     />
                   </div>
                   <div className="flex flex-1 flex-col space-y-2 p-4">
-                    <h3 className="text-sm font-medium text-gray-900">
+                    <h3 className="text-sm font-medium text-gray-900 dark:text-gray-100">
                       {" "}
                       {query.query_title}
                     </h3>
@@ -80,7 +80,7 @@ export default function MyQueries() {
                           src={query.user_img}
                           alt=""
                         />
-                        <p className="text-base font-normal text-gray-900">
+                        <p className="text-base font-normal text-gray-900 dark:text-gray-100">
                           {query.name}
                         </p>
                       </div>

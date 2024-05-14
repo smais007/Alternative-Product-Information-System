@@ -13,6 +13,7 @@ const navigation = [
   { name: "Recommendations For Me", href: "/recommendations-for-me" },
   { name: "My Queries", href: "/my-queries" },
   { name: "My recommendations", href: "/my-recommendations" },
+  { name: "Contact", href: "/contact" },
 ];
 
 export default function Navbar() {
@@ -69,7 +70,9 @@ export default function Navbar() {
 
         <div className="hidden lg:flex lg:gap-x-12">
           {navigation.map((item) =>
-            (item.name === "Add Tourists Spot" || item.name === "My List") &&
+            (item.name === "Recommendations For Me" ||
+              item.name === "My Queries" ||
+              item.name === "My recommendations") &&
             !user ? null : (
               <a
                 key={item.name}
@@ -216,15 +219,20 @@ export default function Navbar() {
           <div className="mt-6 flow-root">
             <div className="-my-6 divide-y divide-gray-500/10  dark:divide-gray-50">
               <div className="space-y-2 py-6">
-                {navigation.map((item) => (
-                  <a
-                    key={item.name}
-                    href={item.href}
-                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-800"
-                  >
-                    {item.name}
-                  </a>
-                ))}
+                {navigation.map((item) =>
+                  (item.name === "Recommendations For Me" ||
+                    item.name === "My Queries" ||
+                    item.name === "My recommendations") &&
+                  !user ? null : (
+                    <a
+                      key={item.name}
+                      href={item.href}
+                      className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-800"
+                    >
+                      {item.name}
+                    </a>
+                  )
+                )}
               </div>
               {!user && (
                 <div className="py-6">

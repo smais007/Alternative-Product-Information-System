@@ -35,7 +35,7 @@ export default function AddQuery() {
 
     console.log(addQuery);
 
-    fetch("http://localhost:5000/queries", {
+    fetch("https://apis-server-eight.vercel.app/queries", {
       method: "POST",
       headers: {
         "content-type": "application/json",

@@ -5,14 +5,13 @@ import { toast } from "sonner";
 import { useLoaderData, useParams } from "react-router-dom";
 
 export default function UpdateQuery() {
-
   const { user } = useContext(AuthContext);
   const { id } = useParams();
-  const queryData=useLoaderData()
-  const [query, setQuery] = useState({queryData});
+  const queryData = useLoaderData();
+  const [query, setQuery] = useState({ queryData });
 
   useEffect(() => {
-    fetch(`http://localhost:5000/details/${id}`)
+    fetch(`https://apis-server-eight.vercel.app/details/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setQuery(data);
@@ -24,7 +23,6 @@ export default function UpdateQuery() {
 
   console.log(query);
 
-
   const handleUpdateQuery = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -33,8 +31,6 @@ export default function UpdateQuery() {
     const product_image_url = form.product_image_url.value;
     const query_title = form.query_title.value;
     const alternation_reason = form.alternation_reason.value;
-
-
 
     const posted_date = new Date();
     const updatedQuery = {
@@ -46,7 +42,7 @@ export default function UpdateQuery() {
       posted_date,
     };
 
-    fetch(`http://localhost:5000/updateQuery/${id}`, {
+    fetch(`https://apis-server-eight.vercel.app/updateQuery/${id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",
@@ -167,7 +163,6 @@ export default function UpdateQuery() {
                     id="about"
                     name="alternation_reason"
                     rows={3}
-
                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 dark:bg-gray-900 dark:ring-gray-700 dark:text-white"
                     defaultValue={query.alternation_reason}
                   />
@@ -178,7 +173,7 @@ export default function UpdateQuery() {
               </div>
             </div>
           </div>
-          <div className="flex items-center justify-end gap-x-6 border-t border-gray-900/10 px-4 py-4 sm:px-8">
+          <div className="flex items-center justify-end gap-x-6 border-t border-gray-900/10 dark:border-gray-800 px-4 py-4 sm:px-8">
             <button
               type="button"
               className="text-sm font-semibold leading-6 text-gray-900"

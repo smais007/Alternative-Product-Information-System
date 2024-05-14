@@ -10,7 +10,7 @@ export default function RecommendationForMe() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/recommendation?user=${email}`)
+    fetch(`https://apis-server-eight.vercel.app/recommendation?user=${email}`)
       .then((res) => {
         if (!res.ok) {
           throw new Error("Failed to fetch data");

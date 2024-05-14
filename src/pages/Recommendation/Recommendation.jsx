@@ -13,7 +13,7 @@ export default function Recommendation() {
   console.log(user);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/details/${id}`)
+    fetch(`https://apis-server-eight.vercel.app/details/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setQuery(data);
@@ -28,7 +28,7 @@ export default function Recommendation() {
 
   const query_title = query.query_title;
   const product_name = query.product_name;
-  const use_email=query.email
+  const use_email = query.email;
 
   const handleRecommendation = (e) => {
     e.preventDefault();
@@ -58,7 +58,7 @@ export default function Recommendation() {
 
     console.log(recommendationQuery);
 
-    fetch("http://localhost:5000/recommendation", {
+    fetch("https://apis-server-eight.vercel.app/recommendation", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -194,7 +194,6 @@ export default function Recommendation() {
               Cancel
             </button>
             <button
-
               type="submit"
               className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >

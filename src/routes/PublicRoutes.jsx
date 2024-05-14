@@ -12,16 +12,19 @@ import UpdateQuery from "../pages/UpdateQuery/UpdateQuery";
 import Recommendation from "../pages/Recommendation/Recommendation";
 import PrivateRoute from "./PrivateRoute";
 import RecommendationForMe from "../pages/RecommendationForMe/RecommendationForMe";
+import Contact from "../pages/Contact/Contact";
+import ErrorPage from "../pages/ErrorPage/ErrorPage";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <Root></Root>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         path: "/",
         element: <Home></Home>,
-        loader: () => fetch("http://localhost:5000/queries"),
+        loader: () => fetch("https://apis-server-eight.vercel.app/queries"),
       },
       {
         path: "/log-in",
@@ -38,7 +41,7 @@ export const router = createBrowserRouter([
             <MyQueries></MyQueries>
           </PrivateRoute>
         ),
-        loader: () => fetch("http://localhost:5000/queries"),
+        loader: () => fetch("https://apis-server-eight.vercel.app/queries"),
       },
       {
         path: "/add-query",
@@ -57,13 +60,15 @@ export const router = createBrowserRouter([
         ),
         loader: ({ params }) => {
           console.log(params, "from rou");
-          return fetch(`http://localhost:5000/queries/${params.id}`);
+          return fetch(
+            `https://apis-server-eight.vercel.app/queries/${params.id}`
+          );
         },
       },
       {
         path: "/queries",
         element: <Queries></Queries>,
-        loader: () => fetch("http://localhost:5000/queries"),
+        loader: () => fetch("https://apis-server-eight.vercel.app/queries"),
       },
       {
         path: "/details/:id",
@@ -72,7 +77,7 @@ export const router = createBrowserRouter([
             <Details></Details>
           </PrivateRoute>
         ),
-        // loader: ({ params }) => fetch(`http://localhost:5000/${params.id}`),
+        // loader: ({ params }) => fetch(`https://apis-server-eight.vercel.app/${params.id}`),
       },
       {
         path: "/my-recommendations",
@@ -81,7 +86,8 @@ export const router = createBrowserRouter([
             <MyRecommendations></MyRecommendations>
           </PrivateRoute>
         ),
-        loader: () => fetch("http://localhost:5000/recommendation"),
+        loader: () =>
+          fetch("https://apis-server-eight.vercel.app/recommendation"),
       },
       {
         path: "/recommendation/:id",
@@ -99,6 +105,10 @@ export const router = createBrowserRouter([
             <RecommendationForMe></RecommendationForMe>
           </PrivateRoute>
         ),
+      },
+      {
+        path: "/contact",
+        element: <Contact></Contact>,
       },
     ],
   },
