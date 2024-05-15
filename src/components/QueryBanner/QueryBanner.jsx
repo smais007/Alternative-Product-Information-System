@@ -7,9 +7,10 @@ export default function QueryBanner() {
             Boost your productivity today.
           </h2>
           <p className="mx-auto mt-3 max-w-xl text-lg leading-8 text-gray-300 dark:text-gray-400">
-            Incididunt sint fugiat pariatur cupidatat consectetur sit cillum
-            anim id veniam aliqua proident excepteur commodo do ea.
+            Spoke fluttered devil and there quoth truly. An bust crest she and.
+            That chamber my one seraphim farther little. Tell.
           </p>
+
           <div className="mt-10 flex items-center justify-center gap-x-6">
             <a
               href="/add-query"
