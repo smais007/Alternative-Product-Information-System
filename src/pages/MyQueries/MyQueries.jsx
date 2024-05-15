@@ -43,14 +43,14 @@ export default function MyQueries() {
     <div className="bg-white dark:bg-gray-900">
       <div className="mx-auto max-w-2xl px-4 py-5 sm:px-3 sm:py-2 lg:max-w-7xl lg:px-8">
         {/* <QueryBanner /> */}
-        <div className="mt-16 flex justify-center">
+        <div className="mt-16 flex justify-center mb-10">
           <p className="relative rounded-full bg-gray-50  dark:bg-gray-800 px-4 py-1.5 text-sm leading-6 text-gray-600 dark:text-gray-300 ring-1 ring-inset ring-gray-900/5">
             <span className="hidden md:inline">
-              Over 2500 companies use our tools to better their business.
+              What&apos;s in your mind? Need post an query? Go here to post
             </span>
-            <a href="#" className="font-semibold text-indigo-600">
-              <span className="absolute inset-0" aria-hidden="true" /> Read our
-              customer stories <span aria-hidden="true">&rarr;</span>
+            <a href="/add-query" className="font-semibold text-indigo-600">
+              <span className="absolute inset-0" aria-hidden="true" /> Your
+              Query<span aria-hidden="true">&rarr;</span>
             </a>
           </p>
         </div>

@@ -11,6 +11,14 @@ export default function RecentQueries() {
   return (
     <div className="bg-white dark:bg-gray-900">
       <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
+        <div className="text-center pb-10">
+          <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl dark:text-gray-100">
+            Recent Post
+          </h2>
+          <p className="mt-4 text-lg leading-8 text-gray-600  dark:text-gray-400">
+            Explor our user&apos;s latest post
+          </p>
+        </div>
         <h2 className="sr-only">Products</h2>
 
         <div className="grid grid-cols-1 gap-y-4 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-10 lg:grid-cols-3 lg:gap-x-8">

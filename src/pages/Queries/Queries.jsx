@@ -1,12 +1,9 @@
-import { useContext } from "react";
 import { useState } from "react";
 import { useLoaderData } from "react-router-dom";
-import { AuthContext } from "../../context/AuthProvider";
 
 export default function Queries() {
   const queries = useLoaderData();
   const [viewMode, setViewMode] = useState("card");
-  const { user } = useContext(AuthContext);
 
   const sortedQueries = [...queries].sort((a, b) => {
     return new Date(b.posted_date) - new Date(a.posted_date);

@@ -58,13 +58,13 @@ export default function Navbar() {
           <a href="#" className="-m-1.5 p-1.5">
             <img className="h-8 w-auto" src={Logo} alt="" />
           </a>
-          <div>
-            <h1 className="bg-gradient-to-r from-blue-600 to-fuchsia-400 bg-clip-text text-transparent text-2xl font-bold leading-none">
+          <div className="hidden md:block">
+            <h1 className="bg-gradient-to-r from-blue-600 to-fuchsia-400 bg-clip-text text-transparent   md:text-2xl font-bold leading-none">
               <a href="/">ALT Goods</a>
             </h1>
-            <p className="leading-none text-xs text-gray-500 ">
+            {/* <p className="leading-none text-xs text-gray-500 ">
               Your Alternative Products Hub
-            </p>
+            </p> */}
           </div>
         </div>
 
