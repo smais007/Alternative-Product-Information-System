@@ -7,6 +7,8 @@ import UserAvarter from "../UserAvarter/UserAvarter";
 import { toast } from "sonner";
 import { AuthContext } from "../../context/AuthProvider";
 
+import Logo from "/alt.png";
+
 const navigation = [
   { name: "Home", href: "/" },
   { name: "Queries", href: "/queries" },
@@ -52,19 +54,17 @@ export default function Navbar() {
         className="mx-auto flex max-w-7xl items-center justify-between gap-x-6 p-6 lg:px-8"
         aria-label="Global"
       >
-        <div className="flex lg:flex-1 items-center gap-2">
+        <div className="flex lg:flex-1 items-center gap-3">
           <a href="#" className="-m-1.5 p-1.5">
-            <span className="sr-only">Your Company</span>
-            <img
-              className="h-8 w-auto"
-              src="https://i.ibb.co/r3qbjTX/logo.png"
-              alt=""
-            />
+            <img className="h-8 w-auto" src={Logo} alt="" />
           </a>
           <div>
-            <h1 className="font-bold text-gray-900 dark:text-white text-2xl hidden md:block">
-              <a href="/">APIS</a>
+            <h1 className="bg-gradient-to-r from-blue-600 to-fuchsia-400 bg-clip-text text-transparent text-2xl font-bold leading-none">
+              <a href="/">ALT Goods</a>
             </h1>
+            <p className="leading-none text-xs text-gray-500 ">
+              Your Alternative Products Hub
+            </p>
           </div>
         </div>
 

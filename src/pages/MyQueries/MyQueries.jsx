@@ -1,5 +1,4 @@
 import { Link, useLoaderData } from "react-router-dom";
-import QueryBanner from "../../components/QueryBanner/QueryBanner";
 import { useContext, useState } from "react";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../context/AuthProvider";
@@ -42,8 +41,19 @@ export default function MyQueries() {
 
   return (
     <div className="bg-white dark:bg-gray-900">
-      <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
-        <QueryBanner />
+      <div className="mx-auto max-w-2xl px-4 py-5 sm:px-3 sm:py-2 lg:max-w-7xl lg:px-8">
+        {/* <QueryBanner /> */}
+        <div className="mt-16 flex justify-center">
+          <p className="relative rounded-full bg-gray-50  dark:bg-gray-800 px-4 py-1.5 text-sm leading-6 text-gray-600 dark:text-gray-300 ring-1 ring-inset ring-gray-900/5">
+            <span className="hidden md:inline">
+              Over 2500 companies use our tools to better their business.
+            </span>
+            <a href="#" className="font-semibold text-indigo-600">
+              <span className="absolute inset-0" aria-hidden="true" /> Read our
+              customer stories <span aria-hidden="true">&rarr;</span>
+            </a>
+          </p>
+        </div>
         <h2 className="sr-only">Products</h2>
 
         <div className="grid grid-cols-1 gap-y-4 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-10 lg:grid-cols-3 lg:gap-x-8">

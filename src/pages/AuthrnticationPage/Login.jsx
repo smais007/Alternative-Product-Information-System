@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { toast } from "sonner";
 import { useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthProvider";
+import Logo from "/alt.png";
 
 export default function Login() {
   const { signIn, googleLogin, githubLogin } = useContext(AuthContext);
@@ -31,13 +32,9 @@ export default function Login() {
     <>
       <div className="flex min-h-full flex-1 flex-col justify-center py-12 sm:px-6 lg:px-8 dark:bg-gray-900">
         <div className="sm:mx-auto sm:w-full sm:max-w-md">
-          <img
-            className="mx-auto h-10  w-auto"
-            src="https://i.ibb.co/r3qbjTX/logo.png"
-            alt="Your Company"
-          />
+          <img className="mx-auto h-10  w-auto" src={Logo} alt="Your Company" />
 
-          <h2 className="mt-6 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
+          <h2 className="mt-6 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900 dark:text-gray-100">
             Sign in to your account
           </h2>
         </div>

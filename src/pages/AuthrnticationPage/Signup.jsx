@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { passwordValidation } from "../../utils/passwordValidation";
 import { BiShow, BiHide } from "react-icons/bi";
 import { AuthContext } from "../../context/AuthProvider";
+import Logo from "/alt.png";
 
 export default function Signup() {
   const { createUser, updateUserProfile, googleLogin, githubLogin } =
@@ -57,18 +58,14 @@ export default function Signup() {
     <>
       <div className="flex min-h-full flex-1 flex-col justify-center py-12 sm:px-6 lg:px-8  dark:bg-gray-900">
         <div className="sm:mx-auto sm:w-full sm:max-w-md">
-          <img
-            className="mx-auto h-10 w-auto"
-            src="https://i.ibb.co/r3qbjTX/logo.png"
-            alt="Your Company"
-          />
+          <img className="mx-auto h-10 w-auto" src={Logo} alt="Your Company" />
           <h2 className="mt-6 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900 dark:text-white">
             Sign in to your account
           </h2>
         </div>
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-[480px]">
-          <div className="bg-white px-6 py-12 shadow sm:rounded-lg sm:px-12 dark:bg-gray-900 dark:shadow-lg">
+          <div className="bg-white px-6 py-12 shadow sm:rounded-lg sm:px-12 dark:bg-gray-900 dark:shadow-2xl">
             <form
               onSubmit={handleSubmit(onSubmit)}
               className="space-y-6"
