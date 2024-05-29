@@ -16,7 +16,6 @@ import Contact from "../pages/Contact/Contact";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import Test from "../pages/Test/Test";
 
-
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -88,14 +87,12 @@ export const router = createBrowserRouter([
             <MyRecommendations></MyRecommendations>
           </PrivateRoute>
         ),
-        loader: () =>
-          fetch("https://apis-server-eight.vercel.app/recommendation"),
+        // loader: () => fetch("https://apis-server-eight.vercel.app/recommendation"),
       },
       {
         path: "/recommendation/:id",
         element: (
           <PrivateRoute>
-            {" "}
             <Recommendation></Recommendation>
           </PrivateRoute>
         ),

@@ -1,9 +1,16 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useLoaderData } from "react-router-dom";
+import { AuthContext } from "../../context/AuthProvider";
 
 export default function Queries() {
   const queries = useLoaderData();
   const [viewMode, setViewMode] = useState("card");
+  const { user } = useContext(AuthContext);
+
+  console.log(user);
+
+  const photoURL = user?.photoURL;
+  console.log(photoURL);
 
   const sortedQueries = [...queries].sort((a, b) => {
     return new Date(b.posted_date) - new Date(a.posted_date);
@@ -81,14 +88,19 @@ export default function Queries() {
                       <p className="text-sm italic text-gray-500 dark:text-gray-300">
                         {query.alternation_reason.slice(0, 150)}...
                       </p>
-                      <div className="flex items-center gap-3 pt-3">
-                        <img
-                          className="inline-block h-8 w-8 rounded-full"
-                          src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                          alt=""
-                        />
-                        <p className="text-base font-normal text-gray-900 dark:text-gray-100">
+                    </div>
+                    <div className="flex items-center gap-3 pt-3">
+                      <img
+                        className="inline-block h-8 w-8 rounded-full"
+                        src={query.user_img}
+                        alt=""
+                      />
+                      <div>
+                        <p className="text-sm font-bold text-gray-900 dark:text-gray-100 leading-none">
                           {query.name}
+                        </p>
+                        <p className=" font-normal text-xs  text-gray-600 dark:text-gray-300  leading-none">
+                          {new Date(query.posted_date).toLocaleDateString()}
                         </p>
                       </div>
                     </div>
@@ -112,15 +124,21 @@ export default function Queries() {
                   <p className="text-sm italic text-gray-500 dark:text-gray-300">
                     {query.alternation_reason.slice(0, 150)}...
                   </p>
+
                   <div className="flex items-center gap-3 pt-3">
                     <img
                       className="inline-block h-8 w-8 rounded-full"
-                      src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                      src={query.user_img}
                       alt=""
                     />
-                    <p className="text-base font-normal text-gray-900 dark:text-gray-100">
-                      {query.name}
-                    </p>
+                    <div>
+                      <p className="text-sm font-bold text-gray-900 dark:text-gray-100 leading-none">
+                        {query.name}
+                      </p>
+                      <p className=" font-normal text-xs  text-gray-600 dark:text-gray-300  leading-none">
+                        {new Date(query.posted_date).toLocaleDateString()}
+                      </p>
+                    </div>
                   </div>
                 </div>
               )}

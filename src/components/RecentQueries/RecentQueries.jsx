@@ -1,4 +1,4 @@
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 
 export default function RecentQueries() {
   const queries = useLoaderData();
@@ -53,8 +53,8 @@ export default function RecentQueries() {
                   </p>
                   <div className="flex items-center gap-3 pt-3">
                     <img
-                      className="inline-block h-8 w-8 rounded-full"
-                      src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                      className="inline-block h-10 w-10 rounded-full"
+                      src={query.user_img}
                       alt=""
                     />
                     <p className="text-base font-normal text-gray-900 dark:text-gray-100">

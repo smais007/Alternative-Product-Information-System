@@ -1,10 +1,12 @@
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthProvider";
-
 import { toast } from "sonner";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export default function AddQuery() {
   const { user } = useContext(AuthContext);
+  const location = useLocation();
+  const navigate = useNavigate();
   // console.log(user);
 
   const handleAddQuery = (e) => {
@@ -48,6 +50,7 @@ export default function AddQuery() {
         if (data.insertedId) {
           toast.success("New Place has been added");
           form.reset();
+          navigate(location?.state ? location.state : "/my-queries");
         }
       });
   };
@@ -118,6 +121,7 @@ export default function AddQuery() {
                     name="product_image_url"
                     id="product_image_url"
                     autoComplete="url"
+                    defaultValue={"https://i.ibb.co/cNtbN8G/placeholder.png"}
                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 dark:bg-gray-900 dark:ring-gray-700 dark:text-white "
                   />
                 </div>

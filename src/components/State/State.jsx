@@ -15,7 +15,8 @@ export default function State() {
               Trusted by creators worldwide
             </h2>
             <p className="mt-4 text-lg leading-8 text-gray-600  dark:text-gray-400">
-              Lorem ipsum dolor sit amet consect adipisicing possimus.
+              Entreating beast plainly ghost to weak meant angels is reclining
+              spoken, soul it have thou.
             </p>
           </div>
           <dl className="mt-16 grid grid-cols-1 gap-0.5 overflow-hidden rounded-2xl text-center sm:grid-cols-2 lg:grid-cols-4">

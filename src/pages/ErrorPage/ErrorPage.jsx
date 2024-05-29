@@ -24,7 +24,7 @@ export default function ErrorPage() {
               </p>
               <div className="mt-6">
                 <a
-                  href="#"
+                  href="/"
                   className="text-base font-medium text-indigo-600 hover:text-indigo-500"
                 >
                   Go back home

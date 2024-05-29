@@ -8,7 +8,7 @@ export default function RecommendationForMe() {
   const [recommendedData, setRecommendedData] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/recommendation?user=${email}`)
+    fetch(`https://apis-server-eight.vercel.app/recommendation?user=${email}`)
       .then((res) => res.json())
       .then((data) => setRecommendedData(data))
       .catch((err) => console.log(err));
@@ -36,30 +36,30 @@ export default function RecommendationForMe() {
         </div>
       </div>
       <div className="-mx-4 mt-8 sm:-mx-0">
-        <table className="min-w-full divide-y divide-gray-300">
+        <table className="min-w-full divide-y divide-gray-300  dark:divide-gray-600">
           <thead>
             <tr>
               <th
                 scope="col"
-                className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0"
+                className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900  dark:text-gray-100 sm:pl-0"
               >
                 Query Title
               </th>
               <th
                 scope="col"
-                className="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 lg:table-cell"
+                className="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900  dark:text-gray-100  lg:table-cell"
               >
                 Your Product Name
               </th>
               <th
                 scope="col"
-                className="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 sm:table-cell"
+                className="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900   dark:text-gray-100  sm:table-cell"
               >
                 Recommended Product
               </th>
               <th
                 scope="col"
-                className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900  dark:text-gray-100 "
               >
                 Recommender Name
               </th>
@@ -68,17 +68,17 @@ export default function RecommendationForMe() {
               </th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-gray-200 bg-white">
+          <tbody className="divide-y divide-gray-200 dark:divide-gray-700  bg-white dark:bg-gray-900">
             {Array.isArray(recommendedData) &&
               recommendedData.map(
                 (data) =>
                   email !== data.recommender.email && (
                     <tr key={data._id}>
-                      <td className="w-full max-w-0 py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:w-auto sm:max-w-none sm:pl-0">
+                      <td className="w-full max-w-0 py-4 pl-4 pr-3 text-sm font-medium text-gray-900   dark:text-gray-100  sm:w-auto sm:max-w-none sm:pl-0">
                         {data.query_title}
                         <dl className="font-normal lg:hidden">
                           <dt className="sr-only">Your Product</dt>
-                          <dd className="mt-1 truncate text-gray-700">
+                          <dd className="mt-1 truncate text-gray-700 dark:text-gray-100">
                             Your Product: {data.product_name}
                           </dd>
 

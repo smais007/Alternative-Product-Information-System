@@ -62,9 +62,6 @@ export default function Navbar() {
             <h1 className="bg-gradient-to-r from-blue-600 to-fuchsia-400 bg-clip-text text-transparent   md:text-2xl font-bold leading-none">
               <a href="/">ALT Goods</a>
             </h1>
-            {/* <p className="leading-none text-xs text-gray-500 ">
-              Your Alternative Products Hub
-            </p> */}
           </div>
         </div>
 
@@ -89,7 +86,7 @@ export default function Navbar() {
           )}
         </div>
 
-        <div className="flex flex-1 items-center justify-end gap-x-6">
+        <div className="flex flex-1 items-center justify-end gap-x-3">
           {user ? (
             <div className="flex items-center gap-4">
               <a
@@ -112,7 +109,7 @@ export default function Navbar() {
           )}
         </div>
 
-        <div className="flex ">
+        <div className="flex">
           <div>
             {theme === "light" && (
               <div>
@@ -191,7 +188,7 @@ export default function Navbar() {
             </a>
             {user ? (
               <button
-                href="#"
+                href="/"
                 onClick={handleSignOut}
                 className="ml-auto rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               >
@@ -236,12 +233,12 @@ export default function Navbar() {
               </div>
               {!user && (
                 <div className="py-6">
-                  <a
+                  {/* <a
                     href="/login"
                     className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-800"
                   >
                     Log in
-                  </a>
+                  </a> */}
                   <a
                     href="/sign-up"
                     className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900  dark:text-white  hover:bg-gray-50 dark:hover:bg-gray-800"

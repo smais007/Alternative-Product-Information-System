@@ -1,10 +1,15 @@
 import { Link, useParams } from "react-router-dom";
 import RecomendedProd from "../../components/RecomendedProd/RecomendedProd";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../../context/AuthProvider";
 
 export default function Details() {
   const { id } = useParams();
   const [query, setQuery] = useState({});
+  const { user } = useContext(AuthContext);
+
+  const loggedUser = user.email;
+  console.log(loggedUser);
 
   useEffect(() => {
     fetch(`https://apis-server-eight.vercel.app/details/${id}`)
@@ -14,7 +19,6 @@ export default function Details() {
       })
       .catch((error) => {
         console.error("Error fetching place:", error);
-        // Handle error (e.g., display an error message)
       });
   }, [id]);
 
@@ -25,11 +29,9 @@ export default function Details() {
       .then((res) => res.json())
       .then((data) => {
         console.log("Recommendation count increased:", data);
-        // Optionally, you can update the state to reflect the change immediately
       })
       .catch((error) => {
         console.error("Error adding recommendation:", error);
-        // Handle error (e.g., display an error message)
       });
   };
 
@@ -66,8 +68,8 @@ export default function Details() {
 
             <div className="mt-4 space-y-6">
               <p className="text-base text-gray-500">
-                <span className="font-bold ">Query Title: {""}</span>
-                {query.query_title}
+                <span className="font-bold ">Product Name: {""}</span>
+                {query.product_name}
               </p>
             </div>
 
@@ -120,14 +122,23 @@ export default function Details() {
 
             <form>
               <div className="mt-1">
-                <Link
-                  onClick={handleAddRecommendation}
-                  to={`/recommendation/${id}`}
-                  type="submit"
-                  className="flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50"
-                >
-                  Add Recomended Product
-                </Link>
+                {loggedUser === query.email ? (
+                  <button
+                    disabled={true} // Disable the button
+                    className="flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-400 px-8 py-3 text-base font-medium text-white cursor-not-allowed"
+                  >
+                    Add Recommended Product
+                  </button>
+                ) : (
+                  <Link
+                    onClick={handleAddRecommendation}
+                    to={`/recommendation/${id}`}
+                    type="submit"
+                    className="flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50"
+                  >
+                    Add Recomended Product
+                  </Link>
+                )}
               </div>
             </form>
           </section>

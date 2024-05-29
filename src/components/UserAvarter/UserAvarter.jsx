@@ -20,7 +20,7 @@ export default function UserAvarter() {
   };
 
   return (
-    <Menu as="div" className="relative inline-block text-left">
+    <Menu as="div" className="relative inline-block text-center md:text-left">
       <div>
         <Menu.Button>
           <img
@@ -86,7 +86,7 @@ export default function UserAvarter() {
                   type="submit"
                   className={classNames(
                     active ? "bg-gray-100 text-gray-900" : "text-gray-700",
-                    "block w-full px-4 py-2 text-left text-sm"
+                    "block w-full px-4 py-2 text-center md:text-left text-sm"
                   )}
                 >
                   Sign out

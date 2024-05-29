@@ -1,27 +1,23 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../context/AuthProvider";
-import { useLoaderData } from "react-router-dom";
-import Lottie from "lottie-react";
-import Chatboat from "../../../public/Chatbot.json";
 
 export default function MyRecommendations() {
-  const recommendedData = useLoaderData();
-  const { user } = useContext(AuthContext); // Assuming you have a dark mode state in your AuthContext
+  // const recommendedData = useLoaderData();
+  const [recommendedData, setRecommendedData] = useState();
+  const { user } = useContext(AuthContext);
   const email = user?.email;
 
-  const style = {
-    width: "400px",
-  };
+  useEffect(() => {
+    fetch(`https://apis-server-eight.vercel.app/recommendation`)
+      .then((res) => res.json())
+      .then((data) => setRecommendedData(data))
+      .catch((err) => console.log(err));
+  }, [email]);
+
+  console.log(recommendedData);
 
   return (
     <div className="container mx-auto px-4 sm:px-6 lg:px-8 bg-white dark:bg-gray-900">
-
-      <div>
-        <div className="flex justify-center">
-          <Lottie style={style} animationData={Chatboat} />
-        </div>
-      </div>
-    
       <div className="-mx-4 mt-8 sm:-mx-0">
         <table
           className={`min-w-full divide-y divide-gray-300 dark:divide-gray-700`}
@@ -57,7 +53,7 @@ export default function MyRecommendations() {
               </th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-gray-200 dark:divide-gray-800 bg-white  dark:text-gray-900">
+          <tbody className="divide-y divide-gray-200 dark:divide-gray-800 bg-white dark:bg-gray-900  dark:text-gray-900">
             {Array.isArray(recommendedData) &&
               recommendedData.map(
                 (data) =>
