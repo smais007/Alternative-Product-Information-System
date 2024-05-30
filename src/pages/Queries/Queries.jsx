@@ -5,53 +5,101 @@ import { AuthContext } from "../../context/AuthProvider";
 export default function Queries() {
   const queries = useLoaderData();
   const [viewMode, setViewMode] = useState("card");
+  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedUser, setSelectedUser] = useState("");
+
   const { user } = useContext(AuthContext);
-
-  console.log(user);
-
-  const photoURL = user?.photoURL;
-  console.log(photoURL);
 
   const sortedQueries = [...queries].sort((a, b) => {
     return new Date(b.posted_date) - new Date(a.posted_date);
+  });
+
+  const filteredQueries = sortedQueries.filter((query) => {
+    const matchesSearchTerm = query.query_title
+      .toLowerCase()
+      .includes(searchTerm.toLowerCase());
+    const matchesUser = selectedUser ? query.name === selectedUser : true;
+
+    return matchesSearchTerm && matchesUser;
   });
 
   const toggleViewMode = () => {
     setViewMode((prevMode) => (prevMode === "card" ? "list" : "card"));
   };
 
+  const uniqueUsers = [...new Set(queries.map((query) => query.name))];
+
   return (
     <div className="bg-white dark:bg-gray-900">
       <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
         <h2 className="sr-only">Products</h2>
 
-        {/* View mode toggle buttons */}
-        <div className="flex justify-end mb-4">
-          <button
-            className={`px-4 py-2 mr-2 ${
-              viewMode === "card"
-                ? "bg-blue-500 text-white"
-                : "bg-gray-200 text-gray-700"
-            }`}
-            onClick={toggleViewMode}
+        {/* Search and filter inputs */}
+        <div className="mb-4 flex justify-between items-center space-y-2 flex-wrap">
+          <div>
+            <label
+              htmlFor="search"
+              className="block text-sm font-medium leading-6 text-gray-900"
+            >
+              Quick search
+            </label>
+            <div className="relative mt-2 flex items-center">
+              <input
+                type="text"
+                name="search"
+                id="search"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="block w-full rounded-md border-0 py-1.5 pr-14 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+              />
+              <div className="absolute inset-y-0 right-0 flex py-1.5 pr-1.5">
+                <kbd className="inline-flex items-center rounded border border-gray-200 px-1 font-sans text-xs text-gray-400">
+                  ⌘K
+                </kbd>
+              </div>
+            </div>
+          </div>
+
+          <select
+            value={selectedUser}
+            onChange={(e) => setSelectedUser(e.target.value)}
+            className="px-4 py-2 border border-gray-300 rounded-md"
           >
-            Card View
-          </button>
-          <button
-            className={`px-4 py-2 ${
-              viewMode === "list"
-                ? "bg-blue-500 text-white"
-                : "bg-gray-200 text-gray-700"
-            }`}
-            onClick={toggleViewMode}
-          >
-            List View
-          </button>
+            <option value="">All Users</option>
+            {uniqueUsers.map((user) => (
+              <option key={user} value={user}>
+                {user}
+              </option>
+            ))}
+          </select>
+
+          <div className="flex">
+            <button
+              className={`px-4 py-2 mr-2 ${
+                viewMode === "card"
+                  ? "bg-blue-500 text-white"
+                  : "bg-gray-200 text-gray-700"
+              }`}
+              onClick={toggleViewMode}
+            >
+              Card View
+            </button>
+            <button
+              className={`px-4 py-2 ${
+                viewMode === "list"
+                  ? "bg-blue-500 text-white"
+                  : "bg-gray-200 text-gray-700"
+              }`}
+              onClick={toggleViewMode}
+            >
+              List View
+            </button>
+          </div>
         </div>
 
         {/* Queries grid or list */}
         <div className="grid grid-cols-1 gap-y-4 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-10 lg:grid-cols-3 lg:gap-x-8">
-          {sortedQueries.map((query) => (
+          {filteredQueries.map((query) => (
             <div
               key={query._id}
               className={`group relative ${
@@ -99,7 +147,7 @@ export default function Queries() {
                         <p className="text-sm font-bold text-gray-900 dark:text-gray-100 leading-none">
                           {query.name}
                         </p>
-                        <p className=" font-normal text-xs  text-gray-600 dark:text-gray-300  leading-none">
+                        <p className="font-normal text-xs text-gray-600 dark:text-gray-300 leading-none">
                           {new Date(query.posted_date).toLocaleDateString()}
                         </p>
                       </div>
@@ -135,7 +183,7 @@ export default function Queries() {
                       <p className="text-sm font-bold text-gray-900 dark:text-gray-100 leading-none">
                         {query.name}
                       </p>
-                      <p className=" font-normal text-xs  text-gray-600 dark:text-gray-300  leading-none">
+                      <p className="font-normal text-xs text-gray-600 dark:text-gray-300 leading-none">
                         {new Date(query.posted_date).toLocaleDateString()}
                       </p>
                     </div>

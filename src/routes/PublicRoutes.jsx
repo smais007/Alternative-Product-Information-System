@@ -15,6 +15,8 @@ import RecommendationForMe from "../pages/RecommendationForMe/RecommendationForM
 import Contact from "../pages/Contact/Contact";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import Test from "../pages/Test/Test";
+import ViewProfile from "../pages/Profile/ViewProfile";
+import UpdateProfile from "../pages/Profile/UpdateProfile";
 
 export const router = createBrowserRouter([
   {
@@ -109,6 +111,23 @@ export const router = createBrowserRouter([
         path: "/contact",
         element: <Contact></Contact>,
       },
+      {
+        path: "/view-profile",
+        element: (
+          <PrivateRoute>
+            <ViewProfile></ViewProfile>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/update-profile",
+        element: (
+          <PrivateRoute>
+            <UpdateProfile></UpdateProfile>
+          </PrivateRoute>
+        ),
+      },
+
       {
         path: "/test",
         element: (
